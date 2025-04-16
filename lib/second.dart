@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:section/profile.dart';
 
 class Second extends StatefulWidget {
   final String title;
   final String body;
+  final List<File>? image;
 
-  const Second({required this.title, required this.body, super.key});
+  const Second(
+      {this.image, required this.title, required this.body, super.key});
 
   @override
   _SecondState createState() => _SecondState();
@@ -36,11 +40,18 @@ class _SecondState extends State<Second> {
           child: Container(
             child: Column(
               children: [
-                Image.asset(
-                  "assets/OIP.jpeg",
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                ),
+                widget.image == null || widget.image!.isEmpty
+                    ? Image.asset(
+                        "assets/OIP.jpeg",
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      )
+                    : Image.file(
+                        widget.image![0],
+                        fit: BoxFit.cover,
+                        height: 300,
+                        width: double.infinity,
+                      ),
                 SizedBox(
                   height: 15,
                 ),
@@ -72,6 +83,26 @@ class _SecondState extends State<Second> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(widget.body),
                 ),
+                widget.image == null || widget.image!.isEmpty
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [])
+                    : SizedBox(
+                        height: 500,
+                        child: GridView.builder(
+                            itemCount: widget.image!.length,
+                            itemBuilder: (context, index) => Image.file(
+                                  widget.image![index],
+                                  height: 200,
+                                  width: 200,
+                                  fit: BoxFit.cover,
+                                ),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 10)),
+                      )
               ],
             ),
           ),
