@@ -2,7 +2,7 @@
 
 A beautifully crafted Flutter mobile application featuring a clean, minimal, and modern user interface. This project is ideal for developers looking to learn about advanced UI/UX principles in Flutter or for those seeking a solid starting point for a mobile app.
 
-![App Screenshot](https://github.com/user-attachments/assets/f77a91a4-4d95-4636-a348-0eeb9944cfd5)
+https://github.com/user-attachments/assets/f77a91a4-4d95-4636-a348-0eeb9944cfd5
 
 ---
 
@@ -17,5 +17,29 @@ A beautifully crafted Flutter mobile application featuring a clean, minimal, and
 
 ---
 
-## 🏗️ Project Structure
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run the app on your local machine:
+
+### Prerequisites
+
+- Flutter SDK installed
+- Android Studio or VS Code with Flutter extensions
+- An emulator or physical device for testing
+
+### Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/flutter-modern-ui.git
+cd flutter-modern-ui
+
+# Get packages
+flutter pub get
+
+# Run the app
+flutter run
 
