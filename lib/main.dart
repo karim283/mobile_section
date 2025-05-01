@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:section/first.dart';
+import 'package:section/profile.dart';
 import 'package:section/second.dart';
+import 'package:provider/provider.dart';
+import 'package:section/user_model.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => UserModel(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,7 +1,8 @@
 import 'dart:io';
-
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:section/profile.dart';
+import 'package:section/user_model.dart';
 
 class Second extends StatefulWidget {
   final String title;
@@ -20,13 +21,21 @@ class _SecondState extends State<Second> {
 
   @override
   Widget build(BuildContext context) {
+    final image = Provider.of<UserModel>(context).user?.image;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.person),
+            icon: image == null
+                ? Icon(Icons.person)
+                : CircleAvatar(
+                    child: ClipOval(
+                      child: Image.file(image,
+                          height: 50, width: 50, fit: BoxFit.cover),
+                    ),
+                  ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return Profile();
