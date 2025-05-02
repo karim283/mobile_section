@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:section/first.dart';
-import 'package:section/profile.dart';
-import 'package:section/second.dart';
+import 'package:section/dashboard.dart';
+import 'package:section/items/additem.dart';
+import 'package:section/items/itemmodel.dart';
+import 'package:section/profile/profile.dart';
+import 'package:section/details/details.dart';
 import 'package:provider/provider.dart';
-import 'package:section/user_model.dart';
+import 'package:section/user/user_model.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (context) => UserModel(), child: const MyApp()));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => UserModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Itemmodel(),
+        )
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: First(),
+      home: Dashboard(),
       debugShowCheckedModeBanner: false,
     );
   }

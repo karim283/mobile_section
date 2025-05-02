@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:section/option.dart';
+import 'package:section/profile/option.dart';
 import 'package:provider/provider.dart';
-import 'package:section/user_model.dart';
+import 'package:section/user/user_model.dart';
 
 class Profile extends StatefulWidget {
   Profile({super.key});

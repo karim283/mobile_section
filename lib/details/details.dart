@@ -1,16 +1,20 @@
 import 'dart:io';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:section/profile.dart';
-import 'package:section/user_model.dart';
+import 'package:section/items/itemmodel.dart';
+import 'package:section/profile/profile.dart';
+import 'package:section/user/user_model.dart';
 
 class Second extends StatefulWidget {
-  final String title;
-  final String body;
-  final List<File>? image;
+  // final String? title;
+  // final String? body;
+  // final List<File>? image;
 
   const Second(
-      {this.image, required this.title, required this.body, super.key});
+      {
+      // this.image, this.title, this.body,
+
+      super.key});
 
   @override
   _SecondState createState() => _SecondState();
@@ -22,9 +26,11 @@ class _SecondState extends State<Second> {
   @override
   Widget build(BuildContext context) {
     final image = Provider.of<UserModel>(context).user?.image;
+    final items = Provider.of<Itemmodel>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("${items.selecteditem?.title ?? "tree"}"),
         centerTitle: true,
         actions: [
           IconButton(
@@ -49,18 +55,18 @@ class _SecondState extends State<Second> {
           child: Container(
             child: Column(
               children: [
-                widget.image == null || widget.image!.isEmpty
-                    ? Image.asset(
-                        "assets/OIP.jpeg",
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                      )
-                    : Image.file(
-                        widget.image![0],
-                        fit: BoxFit.cover,
-                        height: 300,
-                        width: double.infinity,
-                      ),
+                // widget.image == null || widget.image!.isEmpty
+                //     ? Image.asset(
+                //         "assets/OIP.jpeg",
+                //         fit: BoxFit.cover,
+                //         width: double.infinity,
+                //       )
+                Image.file(
+                  items.selecteditem!.images.first,
+                  fit: BoxFit.cover,
+                  height: 300,
+                  width: double.infinity,
+                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -90,28 +96,27 @@ class _SecondState extends State<Second> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(widget.body),
+                  child: Text("${items.selecteditem?.body ?? "body"}"),
                 ),
-                widget.image == null || widget.image!.isEmpty
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [])
-                    : SizedBox(
-                        height: 500,
-                        child: GridView.builder(
-                            itemCount: widget.image!.length,
-                            itemBuilder: (context, index) => Image.file(
-                                  widget.image![index],
-                                  height: 200,
-                                  width: 200,
-                                  fit: BoxFit.cover,
-                                ),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    mainAxisSpacing: 10,
-                                    crossAxisSpacing: 10)),
-                      )
+                // widget.image == null || widget.image!.isEmpty
+                //     ? Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //         children: [])
+                SizedBox(
+                  height: 500,
+                  child: GridView.builder(
+                      itemCount: items.selecteditem?.images!.length,
+                      itemBuilder: (context, index) => Image.file(
+                            items.selecteditem!.images[index],
+                            height: 200,
+                            width: 200,
+                            fit: BoxFit.cover,
+                          ),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10)),
+                )
               ],
             ),
           ),
