@@ -43,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   UserModel.user!.image!))),
                   CircleAvatar(
                       backgroundColor: Colors.black,
-                      radius: 25,
+                      radius: 30,
                       child: IconButton(
                           onPressed: () {
                             showModalBottomSheet(
