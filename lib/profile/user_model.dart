@@ -4,34 +4,29 @@ import 'user.dart';
 import 'dart:io';
 
 class UserModel extends ChangeNotifier {
-
-ImagePicker imagePicker = ImagePicker();
+  ImagePicker imagePicker = ImagePicker();
 
 // File ? selectedImage;
 
-User ?  _user;
-User ? get user => _user;
+  User? _user;
+  User? get user => _user;
 
-Future <void> imageSelector( ImageSource source ) async {
-XFile ? image = await imagePicker.pickImage(source: source);
+  Future<void> imageSelector(ImageSource source) async {
+    XFile? image = await imagePicker.pickImage(source: source);
 
-if(image != null) {
-  if(_user!=null) {
- _user?.image = File(image!.path);
+    if (image != null) {
+      if (_user != null) {
+        _user?.image = File(image!.path);
+      } else {
+        _user = User(
+            name: 'karim', bio: 'everyday is a gift', image: File(image!.path));
+      }
+      notifyListeners();
+    }
   }
-  else {
-    _user = User(name:'Fatma',bio: 'Code Read Repeat',image:File(image!.path));
+
+  void removeImage() {
+    _user?.image = null;
+    notifyListeners();
   }
-  notifyListeners();
-
-}
-}
-void removeImage() {
-        
-              _user?.image = null;
-              notifyListeners();
-          
-}
-
-
 }
