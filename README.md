@@ -2,7 +2,7 @@
 
 A beautifully crafted Flutter mobile application featuring a clean, minimal, and modern user interface. This project is ideal for developers looking to learn about advanced UI/UX principles in Flutter or for those seeking a solid starting point for a mobile app.
 
-https://github.com/user-attachments/assets/a480eb3a-77ff-46fc-9338-47ed902183ba
+[UI](https://github.com/user-attachments/assets/a480eb3a-77ff-46fc-9338-47ed902183ba)
 ---
 
 ## ✨ Key Features
